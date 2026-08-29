@@ -83,7 +83,12 @@ export function VoiceButton({
   const [state, setState] = useState<"idle" | "listening">("idle");
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => () => timer.current && clearTimeout(timer.current), []);
+  useEffect(
+    () => () => {
+      if (timer.current) clearTimeout(timer.current);
+    },
+    [],
+  );
 
   const start = () => {
     if (state === "listening") return;
