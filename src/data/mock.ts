@@ -157,7 +157,7 @@ const productSeed: Array<[string, Craft, number, string]> = [
 ];
 
 export const PRODUCTS: Product[] = productSeed.map(([title, craft, price, materials], i) => {
-  const artisan = ARTISANS[i % ARTISANS.length];
+  const artisan = ARTISANS[i % ARTISANS.length]!;
   return {
     id: `p${i + 1}`,
     title,
@@ -179,7 +179,7 @@ export const PRODUCTS: Product[] = productSeed.map(([title, craft, price, materi
 });
 
 export function artisanOf(product: Product) {
-  return ARTISANS.find((a) => a.id === product.artisanId) ?? ARTISANS[0];
+  return ARTISANS.find((a) => a.id === product.artisanId) ?? ARTISANS[0]!;
 }
 
 export type Buyer = {
