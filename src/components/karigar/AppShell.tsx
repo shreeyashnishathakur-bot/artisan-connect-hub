@@ -1,4 +1,10 @@
 import { Link, useRouterState } from "@tanstack/react-router";
+
+const NavLink = Link as unknown as React.ComponentType<{
+  to: string;
+  className?: string;
+  children?: ReactNode;
+}>;
 import {
   Home,
   Package,
@@ -209,7 +215,7 @@ export function AppShell({ children, title }: { children: ReactNode; title?: str
         <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-64 shrink-0 border-r border-border/70 bg-sidebar p-3 lg:block">
           <nav className="space-y-1">
             {desktopNav.map((item) => (
-              <Link
+              <NavLink
                 key={item.to}
                 to={item.to}
                 className={cn(
@@ -221,7 +227,7 @@ export function AppShell({ children, title }: { children: ReactNode; title?: str
               >
                 {item.icon}
                 {item.label}
-              </Link>
+              </NavLink>
             ))}
           </nav>
         </aside>
@@ -232,7 +238,7 @@ export function AppShell({ children, title }: { children: ReactNode; title?: str
       <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-border/70 bg-card/95 backdrop-blur lg:hidden">
         <div className="mx-auto flex max-w-lg items-stretch">
           {mobileNav.map((item) => (
-            <Link
+            <NavLink
               key={item.to}
               to={item.to}
               className={cn(
@@ -242,7 +248,7 @@ export function AppShell({ children, title }: { children: ReactNode; title?: str
             >
               {item.icon}
               {item.label}
-            </Link>
+            </NavLink>
           ))}
         </div>
       </nav>
